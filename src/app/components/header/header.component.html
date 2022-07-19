@@ -1,0 +1,8 @@
+<header>
+  <form (submit)="handlerSearch(inputValue.value)" >
+    <label>
+      <input (keyup)="handlerChange(inputValue.value)" #inputValue placeholder="Procure" type="text" />
+      <button [disabled]="!inputValue.value.length" (click)="handlerSearch(inputValue.value)" type="button">Procurar</button>
+    </label>
+  </form>
+</header>
