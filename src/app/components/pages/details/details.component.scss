@@ -1,0 +1,85 @@
+.container-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-page);
+
+  &-card {
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 16px;
+
+    .pokemon {
+      margin-top: 16px;
+      padding: 8px;
+      background-color: #fff;
+      color: black;
+      border-radius: 8%;
+      text-align: center;
+    
+      img {
+        height: 14vh;
+      }
+    }
+  
+    .container-types {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+
+      .type {
+        min-width: 60px;
+        padding: 6px;
+        border-radius: 16px;
+        color: #fff;
+        letter-spacing: 0.5px;
+      }
+    }
+  
+    .container-stats {
+      flex-wrap: wrap;
+      padding: 8px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .container-evolutions {
+      background-color: var(--background-container-evolutions);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    
+      & > app-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1246px) {
+  
+  .container-details {
+    overflow: auto;
+    
+    main {
+      height: 100%;
+      padding: 20px;
+    }
+  }
+}

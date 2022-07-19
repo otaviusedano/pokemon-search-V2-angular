@@ -1,0 +1,29 @@
+<div class='container-details'>
+  <main>
+    <section class="container-details-card">
+      <div>
+        <a routerLink='/'>Voltar</a>
+      </div>
+      <div class="pokemon">
+        <span>#{{pokemon?.id}}</span>
+        <h1>{{pokemon?.name}}</h1>
+        <img src={{pokemon?.sprites.front_default}} alt={{pokemon?.name}}>
+      </div>
+      <div class="container-types">
+        <div class="type" [ngStyle]='{backgroundColor: format.colors(type)}' *ngFor="let type of format.types(pokemon)">
+          {{type}}
+        </div>
+      </div>
+      <div class="container-stats">
+        <div *ngFor="let stat of format.stats(pokemon?.stats)">
+          {{stat}}
+        </div>
+      </div>
+      <div class="container-evolutions">
+        <app-card *ngFor="let pokemon of firstPokemon" [pokemonName]="pokemon.name" ></app-card>
+        <app-card *ngFor="let evolution of evolutions" [pokemonName]="evolution.name" ></app-card>
+      </div>
+    </section>
+  </main>
+</div>
+<router-outlet>
