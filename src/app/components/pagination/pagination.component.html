@@ -1,0 +1,10 @@
+<footer>
+  <div class='container-buttons'>
+    <button [disabled]="current === 1" (click)="prevPage()" type='button' > < </button>
+    <div class='container-count-page'>
+      <span>{{current}} /</span>
+      <span>{{pages}}</span>
+    </div>
+    <button [disabled]="current === pages" (click)="nextPage()" type='button' > > </button>
+  </div>
+</footer>
