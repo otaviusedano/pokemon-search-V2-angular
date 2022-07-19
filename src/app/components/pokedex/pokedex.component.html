@@ -1,0 +1,10 @@
+<div class="container-pokedex">
+  <app-header (inputValue)="getEvent($event)" ></app-header>
+  <main>
+    <section class="container-pokemons">
+      <h1 *ngIf="getError()">Pokemon Não Encontrado.</h1>
+      <app-card *ngFor="let pokemonName of getPokemonsName()" [pokemonName]="pokemonName">
+      </app-card>
+    </section>
+  </main>
+<app-pagination [countPage]="getCountPage()" [pokedexPage]="getResultsByPage" ></app-pagination>
