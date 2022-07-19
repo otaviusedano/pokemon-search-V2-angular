@@ -1,27 +1,21 @@
-# AngularInit
+## Pokemon Search V2 - Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
+this Application was made with `Angular` and `Scss`. its to search pokemons, your types and evolutions
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### to access in virtual web
 
-## Code scaffolding
+Link - https://pokemon-search-v2-angular.vercel.app/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+### to run this app in your machine, follow down
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1 - clone this repo in your machine 
 
-## Running unit tests
+2 - `npm install` and `npm run start` in your terminator 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3 - open your browser e put `http://localhost:4200/` on your url bar 
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4 - be happy :) 
