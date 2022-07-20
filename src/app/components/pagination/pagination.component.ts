@@ -8,19 +8,16 @@ import { PokedexService } from 'src/app/services/pokedex.service';
 })
 
 export class PaginationComponent implements OnInit {
-  offset: any
-  defaultLimit!: number
-  current!: number
-  pages: any;
+  defaultLimit: number = 24 
+  current: number = 1
+  pages!: number;
 
-  constructor(private service: PokedexService) {  }
+  constructor(private service: PokedexService) { }
 
   @Input() pokedexPage: any;
   @Input() countPage: any;
 
   ngOnInit(): void {
-    this.current = 1
-    this.defaultLimit = 24 
     this.pages = Math.ceil(this.countPage / this.defaultLimit) 
   }
 
