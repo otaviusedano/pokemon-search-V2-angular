@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PokedexService } from '../../services/pokedex.service';
-import { Subscription } from 'rxjs';
-import { results } from 'src/app/interfaces/results';
+import { Component, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs'
+import { PokedexService } from '../../services/pokedex.service'
+import { results } from 'src/app/interfaces/results'
 
 @Component({
   selector: 'app-pokedex',
@@ -10,7 +10,7 @@ import { results } from 'src/app/interfaces/results';
 })
 
 export class PokedexComponent implements OnInit  {
-  resultsFromPage!: Subscription;
+  resultsFromPage!: Subscription
 
   constructor(private service: PokedexService) { }
 
@@ -18,7 +18,7 @@ export class PokedexComponent implements OnInit  {
     this.getResultsByPage('init')
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.resultsFromPage.unsubscribe()
   }
 
