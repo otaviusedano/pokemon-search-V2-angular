@@ -1,12 +1,12 @@
 export interface results {
-  count: number,
+  count: number
   results?: [resultsData]
-  next: string,
-  previous: string,
+  next: string
+  previous: string
   pokemons: number[] | undefined
 }
 
 export interface resultsData {
-  name: string,
+  name: string
   url: string
 }
