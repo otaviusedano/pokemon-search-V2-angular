@@ -7,7 +7,7 @@
       <div class="pokemon">
         <span>#{{pokemon?.id}}</span>
         <h1>{{pokemon?.name}}</h1>
-        <img src={{pokemon?.sprites.front_default}} alt={{pokemon?.name}}>
+        <img src={{pokemon?.sprites?.front_default}} alt={{pokemon?.name}}>
       </div>
       <div class="container-types">
         <div class="type" [ngStyle]='{backgroundColor: format.colors(type)}' *ngFor="let type of format.types(pokemon)">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="container-stats">
-        <div *ngFor="let stat of format.stats(pokemon?.stats)">
+        <div *ngFor="let stat of format.stats(pokemon)">
           {{stat}}
         </div>
       </div>
@@ -26,4 +26,3 @@
     </section>
   </main>
 </div>
-<router-outlet>
