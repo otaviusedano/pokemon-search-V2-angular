@@ -4,10 +4,10 @@
     <img src={{pokemon?.sprites?.front_default}}  alt={{pokemon.name}}>
     <div class="container-types">
       <div
-        class="type" 
-        [ngStyle]='{backgroundColor: format.colors(type)}' 
+        class="type"
+        [ngStyle]='{backgroundColor: format.colors(type)}'
         #pokemonTypes
-        *ngFor="let type of format?.types(pokemon)"
+        *ngFor="let type of format.types(pokemon)"
       >
         {{type}}
       </div>
