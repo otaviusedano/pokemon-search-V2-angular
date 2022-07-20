@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { PokedexService } from 'src/app/services/pokedex.service';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Router  } from '@angular/router'
+import { Subscription } from 'rxjs'
 
-import format from '../../../helpers/format'
+import { pokemonData } from 'src/app/interfaces/pokemon'
+import { PokedexService } from 'src/app/services/pokedex.service'
+import format from 'src/app/helpers/format'
 
 @Component({
   selector: 'app-details',
@@ -12,46 +13,46 @@ import format from '../../../helpers/format'
 })
 
 export class DetailsComponent implements OnInit {
-  pokemon: any
-  format: any
+  format: any = format
+  pokemonName!: string
+  pokemon!: any
   types: any
   stats: any
-  firstPokemon: any
-  evolutions: any[] = []
-  pokemonName: any
-  pokemonNameByParams!: Subscription
-  paramentos: any;
+  evolutions: any = this.service.evolutions
+  firstPokemon: any = this.service.firstPokemonOfChain
+  pokemonSubscribe!: Subscription
 
-  constructor(private route: ActivatedRoute, private service: PokedexService, private router: Router) { }
-  
+  constructor(
+    private route: ActivatedRoute,
+    private service: PokedexService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
     this.getPokemonsDetails()
-    this.firstPokemon = this.service.firstPokemonOfChain
-    this.evolutions = this.service.evolutions
-    this.format = format
-
     this.reset()
   }
 
-  ngOnDestroy() {
-    this.pokemonNameByParams.unsubscribe()
+  ngOnDestroy(): void {
+    this.pokemonSubscribe.unsubscribe()
   }
 
-  reset() {
+  reset(): void {
     this.service.pokemons = []
     this.service.pokemonFiltered = []
     this.service.inputValue = ''
   }
 
-  getPokemonsDetails() {
-    this.pokemonNameByParams = this.route.params.subscribe((params: any) => {
+  getPokemonsDetails(): void {
+    this.route.params.subscribe((params) => {
       this.pokemonName = params['pokemon.name']
 
-      this.service.getPokemonByName(this.pokemonName).subscribe((pokemonData: any) => {
-        this.pokemon = pokemonData
-        this.service.getEvolutionChain(pokemonData.id)
+      this.pokemonSubscribe = this.service.getPokemonByName(this.pokemonName)
+        .subscribe((pokemonData: pokemonData) => {
+          this.pokemon = pokemonData
+          this.service.getEvolutionChain(pokemonData.id)
       }, (err) => err.status === 404
-          ? this.router.navigate(['/']) 
+          ? this.router.navigate(['**']) 
           : this.pokemon
       )
     })
