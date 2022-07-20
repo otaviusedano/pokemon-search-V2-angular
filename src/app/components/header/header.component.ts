@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { PokedexService } from 'src/app/services/pokedex.service';
+import { Component, EventEmitter, Output } from '@angular/core'
+import { PokedexService } from 'src/app/services/pokedex.service'
 
 @Component({
   selector: 'app-header',
@@ -8,19 +8,16 @@ import { PokedexService } from 'src/app/services/pokedex.service';
 })
 
 export class HeaderComponent {
-  name: any = 'aqui'
 
   constructor(private service: PokedexService) { }
 
-  @Output() inputValue = new EventEmitter<any>();
+  @Output() inputValue = new EventEmitter<any>()
 
   handlerChange(value: string) {
     this.inputValue.emit(value.toLowerCase())
-
-    if (!this.service.inputValue.length) {
-      this.service.pokemonFiltered = []
-      this.service.error = undefined
-    } 
+    console.log(this.service.pokemonFiltered);
+    this.service.pokemonFiltered = []
+    this.service.error = undefined
   }
 
   handlerSearch(value: string) {
