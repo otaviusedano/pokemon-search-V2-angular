@@ -7,9 +7,6 @@ import { HttpClient } from '@angular/common/http'
 describe('PokedexService', () => {
   let service: PokedexService
   let http: HttpClient
-  let fixture: ComponentFixture<PokedexService>
-  let headerDe: any
-  let headerEl: HTMLElement
 
   beforeEach(() => {
     TestBed.configureTestingModule({
