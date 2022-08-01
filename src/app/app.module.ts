@@ -12,7 +12,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { CardComponent } from './components/card/card.component';
 import { IconsModule } from './icons/icons.module';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
-import { AboutComponent } from './components/pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { AboutComponent } from './components/pages/about/about.component';
     HeaderComponent,
     PaginationComponent,
     CardComponent,
-    NotFoundComponent,
-    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
