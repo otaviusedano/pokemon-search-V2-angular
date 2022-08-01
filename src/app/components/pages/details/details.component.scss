@@ -1,71 +1,118 @@
 .container-details {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: var(--background-page);
+  background-color: var(--secondary-background-color);
+  padding: 24px;
 
-  &-card {
-    background-color: white;
-    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+  .details {
     padding: 20px;
     margin: 20px;
     border-radius: 16px;
 
-    .pokemon {
-      margin-top: 16px;
-      padding: 8px;
-      background-color: #fff;
-      color: black;
-      border-radius: 8%;
-      text-align: center;
-    
-      img {
-        height: 14vh;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > :nth-child(1) {
+        color: var(--primary-text-color);
+        font-weight: 500;
+      }
+
+      & > :nth-child(2) {
+        color: var(--primary-text-color);
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      & > :last-child {
+        color: var(--secondary-text-color);
+        font-size: 14px;
       }
     }
-  
-    .container-types {
+
+    &-pokemon-img {
+      text-align: center;
+      margin-top: 10px;
+
+      img {
+        object-fit: contain;
+        image-rendering: pixelated;
+        height: 26vh;
+      }
+    }
+
+    &-types {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 20px;
       text-align: center;
+      font-weight: 600;
 
       .type {
-        min-width: 60px;
-        padding: 6px;
-        border-radius: 16px;
-        color: #fff;
-        letter-spacing: 0.5px;
+        min-width: 74.9px;
+        min-height: 32px;
+        padding: 9px 19px;
+        font-size: 15px;
+        border-radius: 10px;
+        color: var(--accent-text-color);
+        line-height: 100%;
       }
     }
-  
-    .container-stats {
-      flex-wrap: wrap;
-      padding: 8px;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-    }
 
-    .container-evolutions {
-      background-color: var(--background-container-evolutions);
-      border-radius: 12px;
-      padding: 20px;
+    &-stats {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 16px;
-    
-      & > app-card {
+      text-align: center;
+      gap: 8px 15px;
+      margin: 24px auto;
+
+      .stat {
+        font-weight: 600;
         display: flex;
-        flex-wrap: wrap;
+        gap: 5px;
+        padding: 9.5px;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: var(--primary-background-color);
+        width: 98px;
+        border-radius: 9.5px;
+
+        & > span:nth-child(2) {
+          color:  var(--secondary-text-color);
+          font-size: 12px;
+        }
+
+        & > span:last-child {
+          color:  var(--primary-text-color);
+          line-height: 16px;
+          font-size: 18px;
+        }
+      }
+    }
+
+    &-evolutions {
+
+      h1 {
+        font-size: 18px;
+        line-height: 100%;
+        font-weight: 600;
+        color: var(--primary-text-color);
+      }
+
+      .evolutions {
+        display: flex;
+        align-items: center;
+        overflow-x: scroll;
         gap: 16px;
+        margin: 16px auto;
+
+        app-card:last-child {
+          margin-right: 12px;
+        }
       }
     }
   }
@@ -73,13 +120,12 @@
 
 
 @media only screen and (max-width: 1246px) {
-  
+
   .container-details {
     overflow: auto;
-    
+
     main {
       height: 100%;
-      padding: 20px;
     }
   }
 }
