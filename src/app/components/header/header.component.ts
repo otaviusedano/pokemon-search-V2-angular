@@ -10,20 +10,19 @@ import { PokedexService } from 'src/app/services/pokedex.service'
 export class HeaderComponent {
 
   constructor(private service: PokedexService) { }
+  pokemonName!: string
 
   @Output() inputValue = new EventEmitter<any>()
 
   handlerChange(value: string) {
-    this.inputValue.emit(value.toLowerCase())
-    console.log(this.service.pokemonFiltered);
-    this.service.pokemonFiltered = []
+    this.pokemonName = value.toLowerCase().trim()
+    this.inputValue.emit(this.pokemonName)
     this.service.error = undefined
+    this.service.pokemonFiltered = []
   }
 
-  handlerSearch(value: string) {
-    if (!this.service.pokemonFiltered.length) {
-      this.service.pokemonFiltered.push(value.toLowerCase())
-    }
+  handlerSearch() {
+    this.service.pokemonFiltered.push(this.pokemonName)
   }
 
 }
