@@ -1,6 +1,6 @@
 .container-pagination {
   flex-basis: 10vh;
-  margin-top: 18px;
+  margin: 18px auto;
 
   .container-buttons {
     display: flex;
@@ -23,5 +23,11 @@
       font-size: 18px;
       color: var(--primary-text-color);
     }
+  }
+}
+
+@media only screen and (min-width: 660px) {
+  .container-pagination {
+    margin: 12px auto;
   }
 }
