@@ -1,44 +1,58 @@
-:host {
-  flex-basis: 15vh;
+header {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
 
-  form {
-    margin: 20px;
+  .container-title {
+    display: flex;
+    align-items: baseline;
+    gap: 22px;
+
+    h1 {
+      color: var(--tertiary-text-color);
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    span {
+      cursor: pointer;
+    }
   }
 
-  label {
-    font-size: 20px;
+  .container-search {
     display: flex;
-    gap: 20px;
-    align-items: baseline;
+    justify-content: space-between;
+    margin: 24px 0 25px 0;
 
     input {
       height: 50px;
-      padding-left: 16px;
-      font-size: 18px;
-      border: solid 1px #c7c7c7;
+      width: 245px;
+      padding: 16px;
+      font-size: 16px;
+      line-height: 15px;
       border-radius: 5px;
+      background-color: var(--secondary-background-color);
+      color: var(--primary-text-color);
       transition: 0.3s;
+    }
 
-      &:hover {
-        border: solid 1px #959595;
-      }
+    input::placeholder {
+      color: var(--secondary-text-color);
     }
 
     button {
-      height: 50px;
-      font-size: 16px;
-      padding: 8px;
-      background-color: var(--background-search-button);
-      border: solid 1px #c7c7c7;
+      cursor: pointer;
+      height: 48px;
+      width: 48px;
       border-radius: 8px;
+      padding: 8px;
       transition: 0.4s;
+      background-color: var(--primary-background-button);
+      font-size: 16px;
 
-      &:hover {
-        border: solid 1px #959595;
+      fa-icon {
+        color: var(--accent-text-color);
       }
     }
-  }
+  } 
 }
