@@ -16,6 +16,7 @@
       & > :nth-child(1) {
         color: var(--primary-text-color);
         font-weight: 500;
+        cursor: pointer;
       }
 
       & > :nth-child(2) {
@@ -119,10 +120,10 @@
 }
 
 
-@media only screen and (max-width: 1246px) {
+@media only screen and (min-width: 660px) {
 
   .container-details {
-    overflow: auto;
+    padding: 56px;
 
     main {
       height: 100%;
