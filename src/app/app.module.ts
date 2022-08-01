@@ -10,7 +10,9 @@ import { PokedexComponent } from './components/pokedex/pokedex.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CardComponent } from './components/card/card.component';
+import { IconsModule } from './icons/icons.module';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
+import { AboutComponent } from './components/pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
     PaginationComponent,
     CardComponent,
     NotFoundComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
