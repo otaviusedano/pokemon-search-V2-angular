@@ -2,34 +2,23 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
-import { results } from '../interfaces/results'
-import { evolutionsData, firstEvolutionData } from '../interfaces/pokemon'
-
-import format from '../helpers/format'
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class PokedexService {
-  private readonly urlApiToChain = "https://pokeapi.co/api/v2/"
-  private readonly urlApi = "https://pokeapi.co/api/v2/pokemon/"
-  format: any
+  readonly urlApiToChain = "https://pokeapi.co/api/v2/"
+  readonly urlApi = "https://pokeapi.co/api/v2/pokemon/"
+  readonly firstFetchUrlApi = this.urlApi + '?offset=0&limit=24'
+  readonly lastFetchUrlApi = this.urlApi + '?offset=1128&limit=24'
   error: Error | undefined
-  inputValue!: string
-  results!: results
-  pokemons: string[] = []
-  pokemonFiltered: string[] = []
-  firstPokemonOfChain: firstEvolutionData[] = []
-  evolutions: evolutionsData[] = []
+  results!: any
+  pokemonFiltered!: string[]
 
   constructor(private http: HttpClient) { }
 
-  getByEvent($event: string): void {
-    this.inputValue = $event
-  }
-
   setPage(page: string): Observable<any> {
+
     let urlToGet = ''
 
     switch (page) {
@@ -49,7 +38,7 @@ export class PokedexService {
         urlToGet = this.urlApi + '?offset=0&limit=24'
       break
     }
-    
+
     return this.http.get(urlToGet)
   }
 
@@ -57,43 +46,11 @@ export class PokedexService {
     return this.http.get(this.urlApi + pokemonName)
   }
 
-  getEvolutionChain(pokemonId: number): void  {
-    const justOneChain = this.firstPokemonOfChain.length < 1 || this.firstPokemonOfChain.length > 1
-    if (justOneChain) {
-      this.http.get(this.urlApiToChain + `pokemon-species/${pokemonId}`).subscribe((res: any) =>
-        this.getEvolutionPokemons(res?.evolution_chain.url))
-    }
+  getPokemonSpecies(pokemonId: number): Observable<any> {
+    return this.http.get(this.urlApiToChain + `pokemon-species/${pokemonId}`)
   }
 
-  getEvolutionPokemons(evolutionChainUrl: string): void {
-    
-    this.http.get(evolutionChainUrl).subscribe((evolution: any) => {
-      const evolutionsFormated = format.evolutions(evolution.chain)
-      this.firstPokemonOfChain.push(evolutionsFormated.pokemon)
-      this.generatePokemonEvolutions(evolutionsFormated)
-    })
-  }
-
-  generatePokemonEvolutions(evolutions: any): void {
-    evolutions?.next?.map((evolution: any) => {
-      this.evolutions.push(evolution.pokemon)
-
-      this.generatePokemonEvolutions(evolution)
-    })
-  }
-
-  filterPokemons(): string[] {
-    if (this.pokemonFiltered?.length > 0 || this.pokemonFiltered?.length >= 1) {
-      return this.pokemonFiltered
-    }
-
-    return this.pokemons.filter((pokemon) => {
-      
-      if (this.inputValue) {
-        return pokemon.includes(this.inputValue)
-      }
-      
-      return this.pokemons
-    })
+  getEvolutionChain(evolutionChainUrl: string): Observable<any> {
+    return this.http.get(evolutionChainUrl)
   }
 }
