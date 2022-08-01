@@ -1,9 +1,9 @@
 export interface results {
   count: number
-  results?: [resultsData]
+  results: [resultsData]
   next: string
   previous: string
-  pokemons: number[] | undefined
+  pokemons: string[]
 }
 
 export interface resultsData {

@@ -1,3 +1,7 @@
+export interface evolutions {
+  name: string
+}
+
 export interface pokemonData {
   id: number
   name: string
@@ -21,7 +25,8 @@ export interface evolutionData {
 }
 
 export interface firstEvolutionData {
-  name: string 
+  name: string
+  url: string
 }
 
 export interface pokemonTypes {
