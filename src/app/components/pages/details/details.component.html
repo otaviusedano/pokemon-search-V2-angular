@@ -1,27 +1,41 @@
 <div class='container-details'>
   <main>
-    <section class="container-details-card">
-      <div>
-        <a routerLink='/'>Voltar</a>
+    <section>
+      <div class="details-header">
+        <fa-icon icon="arrow-left" routerLink='/'></fa-icon>
+        <span>{{pokemon.name | titlecase}}</span>
+        <span *ngIf="pokemon.id >= 100">#{{pokemon.id}}</span>
+        <span *ngIf="pokemon.id >= 10 && pokemon.id <= 99">#0{{pokemon.id}}</span>
+        <span *ngIf="pokemon.id < 10">#00{{pokemon.id}}</span>
       </div>
-      <div class="pokemon">
-        <span>#{{pokemon?.id}}</span>
-        <h1>{{pokemon?.name}}</h1>
-        <img src={{pokemon?.sprites?.front_default}} alt={{pokemon?.name}}>
+      <div class="details-pokemon-img">
+        <img src={{pokemon.sprites.front_default}} alt={{pokemon.name}}>
       </div>
-      <div class="container-types">
-        <div class="type" [ngStyle]='{backgroundColor: format.colors(type)}' *ngFor="let type of format.types(pokemon)">
-          {{type}}
+      <div class="details-types">
+        <div
+          class="type"
+          [ngStyle]='{backgroundColor: format.colors(type)}'
+          *ngFor="let type of format.types(pokemon)"
+        >
+          {{type | titlecase}}
         </div>
       </div>
-      <div class="container-stats">
-        <div *ngFor="let stat of format.stats(pokemon)">
-          {{stat}}
+      <div class="details-stats">
+        <div class="stat" *ngFor="let stat of stats">
+          <fa-icon
+            [ngStyle]="{color: format.iconColors(stat.fasIcon)}"
+            [icon]="['fas', stat.fasIcon]"
+          >
+          </fa-icon>
+          <span>{{stat.statName | titlecase}}</span>
+          <span>{{stat.statBase}}</span>
         </div>
       </div>
-      <div class="container-evolutions">
-        <app-card *ngFor="let pokemon of firstPokemon" [pokemonName]="pokemon.name" ></app-card>
-        <app-card *ngFor="let evolution of evolutions" [pokemonName]="evolution.name" ></app-card>
+      <div *ngIf="evolutions.length > 1" class="details-evolutions">
+        <h1>Evoluções</h1>
+        <div class="evolutions">
+          <app-card *ngFor="let evolution of evolutions" [pokemonName]="evolution.name" ></app-card>
+        </div>
       </div>
     </section>
   </main>
