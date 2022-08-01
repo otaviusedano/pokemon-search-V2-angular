@@ -1,10 +1,14 @@
 <div class="container-pokedex">
-  <app-header (inputValue)="getEvent($event)" ></app-header>
+  <app-header (inputValue)="getInputValue($event)"></app-header>
   <main>
     <section class="container-pokemons">
       <h1 *ngIf="getError()">Pokemon Não Encontrado.</h1>
-      <app-card *ngFor="let pokemonName of getPokemonsName()" [pokemonName]="pokemonName">
+      <app-card
+        class="card-view"
+        *ngFor="let pokemon of filterPokemons()"
+        [pokemonName]="pokemon"
+      >
       </app-card>
     </section>
   </main>
-<app-pagination [countPage]="getCountPage()" [pokedexPage]="getResultsByPage" ></app-pagination>
+<app-pagination [setPageTo]="setPageTo"></app-pagination>
