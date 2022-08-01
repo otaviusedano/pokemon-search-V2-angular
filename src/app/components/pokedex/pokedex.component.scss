@@ -5,7 +5,7 @@
   margin: 24px;
 
   main {
-    flex-basis: 75vh;
+    min-height: 75vh;
 
     .container-pokemons {
       display: flex;
@@ -16,3 +16,9 @@
   }
 }
 
+@media only screen and (min-width: 660px) {
+  .container-pokedex {
+    display: block;
+    margin: auto 100px;
+  }
+}
