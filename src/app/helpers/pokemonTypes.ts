@@ -19,4 +19,13 @@ const typeColors: any = {
   water: '#4592c4'
 }
 
+export const iconsStatsColors: any = {
+  heart: '#eb5757',
+  gun: '#f2994a',
+  shield_halved: '#219653',
+  magic_wand_sparkles: '#f2c94c',
+  virus: '#9b51e0',
+  bolt: '#2f80ed'
+}
+
 export default typeColors
