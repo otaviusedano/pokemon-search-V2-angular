@@ -1,11 +1,18 @@
 :root {
-  --background-card: #fff;
-  --background-page: #f1f1f1;
-  --background-search-button: #edd86f9c;
-  --background-pagination-buttons: #faebd7;
-  --pagination-buttons-hover: #eed6b5;
-  --background-container-evolutions: antiquewhite;
-  --border-pagination-buttons: #00000040;
+  --gray1: #333333;
+  --gray2: #eff0f4;
+  --gray3: #828282;
+  --white: #ffffff;
+  --white2: #fbfbfb;
+  --red: #f94949;
+
+  --primary-text-color: var(--gray1);
+  --secondary-text-color: var(--gray3);
+  --tertiary-text-color: var(--red);
+  --accent-text-color: var(--white2);
+  --primary-background-color: var(--white);
+  --secondary-background-color: var(--gray2);
+  --primary-background-button: var(--red)
 }
 
 * {
@@ -14,5 +21,14 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Nunito', sans-serif;
+}
+
+.details-header .svg-inline--fa,
+.container-search .svg-inline--fa {
+  height: 16px;
+}
+
+.svg-inline--fa {
+  height: 12.5px;
 }
