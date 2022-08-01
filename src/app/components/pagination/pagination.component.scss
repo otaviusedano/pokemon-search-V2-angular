@@ -1,6 +1,6 @@
-footer {
+.container-pagination {
   flex-basis: 10vh;
-  padding: 24px;
+  margin-top: 18px;
 
   .container-buttons {
     display: flex;
@@ -10,22 +10,18 @@ footer {
 
     button {
       cursor: pointer;
-      height: 68px;
-      width: 68px;
-      border: 1px solid var(--border-pagination-buttons);
-      background-color: var(--background-pagination-buttons);
-      border-radius: 20px;
-      transition: 0.5s;
+      height: 48px;
+      width: 48px;
+      background-color: var(--primary-background-button);
+      color: var(--accent-text-color);
+      border-radius: 10px;
       font-size: 22px;
-      
-      &:hover {
-        border: 1px solid var(--pagination-buttons-hover);
-      }
     }
 
     .container-count-pages {
       display: flex;
       font-size: 18px;
+      color: var(--primary-text-color);
     }
   }
 }
