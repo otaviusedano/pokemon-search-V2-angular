@@ -1,8 +1,22 @@
 <header>
-  <form (submit)="handlerSearch(inputValue.value)" >
-    <label>
-      <input (keyup)="handlerChange(inputValue.value)" #inputValue placeholder="Procure um pokemon" type="text" />
-      <button [disabled]="!inputValue.value.length" (click)="handlerSearch(inputValue.value)" type="button">Procurar</button>
-    </label>
-  </form>
+  <div class="container-title">
+    <h1>Pokédex</h1>
+    <span>About</span>
+  </div>
+  <div class="container-search">
+    <input
+    (keyup)="handlerChange(inputValue.value)"
+    (keyup.enter)="handlerSearch()"
+      #inputValue
+      placeholder="Pesquise seu pokémon"
+      type="text"
+    />
+    <button
+      [disabled]="!inputValue.value.length"
+      (click)="handlerSearch()"
+      type="button"
+    >
+      <fa-icon icon="magnifying-glass"></fa-icon>
+    </button>
+  </div> 
 </header>
