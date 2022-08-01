@@ -1,0 +1,30 @@
+<main>
+  <ng-template #loading>
+    <h1>Carregando...</h1>
+  </ng-template>
+  <section class="container-about-me" *ngIf="dataFromGit$ | async as dataFromGit ; else loading">
+    <fa-icon routerLink="/" icon="arrow-left"></fa-icon>
+    <img src={{dataFromGit.avatar_url}} alt={{dataFromGit.login}}>
+    <h1>{{dataFromGit.name}}</h1>
+    <span>{{dataFromGit.login}}</span>
+    <div class="container-email">
+      <fa-icon icon="envelope"></fa-icon>
+      <a href="mailto:sedanootavio@gmail.com">sedanootavio@gmail.com</a>
+    </div>
+    <div class="container-links">
+      <fa-icon icon="link"></fa-icon>
+      <a target="_blank" href={{dataFromGit.html_url}}>Github</a> -
+      <a target="_blank" href="https://www.linkedin.com/in/ot%C3%A1vio-sedano-da-silva-b0090a20b/">Linkedin</a>
+    </div>
+  </section>
+  <section class="container-explanation">
+    <h1>Sobre mim</h1>
+    <span>
+      Olá, Eu me chamo Otávio Sedano da Silva, tenho 19 anos, já estudei design interiores, e hoje estudo programação web a quase um ano.
+    </span>
+    <h1>Sobre o projeto</h1>
+    <span>
+      Criei essa aplicação para afim de testes e aprendizados, com Angular 14, framework, e Scss para estilização da página.
+    </span>
+  </section>
+</main>
