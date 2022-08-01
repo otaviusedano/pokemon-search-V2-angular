@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs'
+
 import { PokedexService } from 'src/app/services/pokedex.service'
 import { pokemonData } from 'src/app/interfaces/pokemon'
 
@@ -11,9 +12,9 @@ import format from 'src/app/helpers/format'
   styleUrls: ['./card.component.scss']
 })
 
-export class CardComponent implements OnInit {
-  pokemon!: pokemonData
+export class CardComponent implements OnInit, OnDestroy {
   format: any = format
+  pokemon!: pokemonData
   pokemonData!: Subscription
 
   constructor(private service: PokedexService) { }
@@ -21,20 +22,17 @@ export class CardComponent implements OnInit {
   @Input() pokemonName!: string
 
   ngOnInit(): void {
-    this.getPokemon() 
+    this.getPokemon()
   }
 
-  formatResults(): string[] | string | undefined  {
-    if (this.service.pokemonFiltered.length > 0) {
-      return this.service.pokemonFiltered
-    }
-    return this.pokemonName
+  ngOnDestroy(): void {
+    this.pokemonData.unsubscribe()
   }
 
   getPokemon(): void {
-    this.pokemonData = this.service.getPokemonByName(this.formatResults())
-      .subscribe((data: pokemonData) => {
-        this.pokemon = data
-      }, error => this.service.error = error.status)
+    this.pokemonData = this.service.getPokemonByName(this.pokemonName)
+    .subscribe((data: pokemonData) => {
+      this.pokemon = data
+    }, error => this.service.error = error.status)
   }
 }
