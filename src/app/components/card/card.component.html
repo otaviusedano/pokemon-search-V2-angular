@@ -1,15 +1,25 @@
-<a *ngIf="pokemon" [routerLink]="['/details', pokemon?.name]" class="container-card">
+<a *ngIf="pokemon" [routerLink]="['/details', pokemon.name]">
   <div class="card">
-    <h1>{{pokemon?.name}}</h1>
-    <img src={{pokemon?.sprites?.front_default}}  alt={{pokemon.name}}>
-    <div class="container-types">
+    <div class="card-title">
+      <div class="card-title-reading">
+        <h1>{{pokemon.name | titlecase}}</h1>
+        <span *ngIf="pokemon.id >= 100">#{{pokemon.id}}</span>
+        <span *ngIf="pokemon.id >= 10 && pokemon.id <= 99">#0{{pokemon.id}}</span>
+        <span *ngIf="pokemon.id < 10">#00{{pokemon.id}}</span>
+      </div>
+      <img src="../../../assets/imgs/poke-ball.png" alt="pokeball">
+    </div>
+    <div class="card-pokemon">
+      <img src={{pokemon.sprites.front_default}}  alt={{pokemon.name}}>
+    </div>
+    <div class="card-types">
       <div
         class="type"
         [ngStyle]='{backgroundColor: format.colors(type)}'
         #pokemonTypes
         *ngFor="let type of format.types(pokemon)"
       >
-        {{type}}
+        {{type | titlecase}}
       </div>
     </div>
   </div>
