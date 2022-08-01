@@ -1,7 +1,17 @@
 import { NgModule } from '@angular/core';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHeart, faGun, faShieldHalved, faVirus, faBolt, faMagicWandSparkles, faArrowLeft, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
+import { 
+  faHeart,
+  faGun,
+  faShieldHalved,
+  faVirus,
+  faBolt,
+  faMagicWandSparkles,
+  faArrowLeft,
+  faMagnifyingGlass,
+  faEnvelope,
+  faLink
+} from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   exports: [FontAwesomeModule],
@@ -16,7 +26,9 @@ export class IconsModule {
       faMagicWandSparkles,
       faVirus,
       faBolt,
-      faMagnifyingGlass
+      faMagnifyingGlass,
+      faEnvelope,
+      faLink
     )
   }
 }
