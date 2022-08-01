@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
+import { results } from '../interfaces/results'
+
 @Injectable({
   providedIn: 'root'
-})
+})  
 
 export class PokedexService {
-  readonly urlApiToChain = "https://pokeapi.co/api/v2/"
-  readonly urlApi = "https://pokeapi.co/api/v2/pokemon/"
-  readonly firstFetchUrlApi = this.urlApi + '?offset=0&limit=24'
-  readonly lastFetchUrlApi = this.urlApi + '?offset=1128&limit=24'
+  private readonly urlApiToChain = "https://pokeapi.co/api/v2/"
+  private readonly urlApi = "https://pokeapi.co/api/v2/pokemon/"
+  private readonly firstFetchUrlApi = this.urlApi + '?offset=0&limit=20'
+  private readonly lastFetchUrlApi = this.urlApi + '?offset=1128&limit=20'
   error: Error | undefined
   results!: any
   pokemonFiltered!: string[]
@@ -31,11 +33,11 @@ export class PokedexService {
       break
 
       case 'lastPage':
-        urlToGet = this.urlApi + '?offset=1128&limit=24'
+        urlToGet = this.lastFetchUrlApi
       break
 
       case 'init':
-        urlToGet = this.urlApi + '?offset=0&limit=24'
+        urlToGet = this.firstFetchUrlApi
       break
     }
 
