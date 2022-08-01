@@ -6,7 +6,7 @@ this Application was made with `Angular` and `Scss`. its to search pokemons, you
 
 ### to access in virtual web
 
-Link - https://pokemon-search-v2-angular.vercel.app/
+Link - https://pokemon-search-angular.vercel.app/
 
 ---
 
