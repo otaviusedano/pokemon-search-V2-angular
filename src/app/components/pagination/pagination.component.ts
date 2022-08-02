@@ -8,7 +8,7 @@ import { PokedexService } from 'src/app/services/pokedex.service'
 })
 
 export class PaginationComponent implements OnInit {
-  pokemonsPerPage: number = 24 
+  pokemonsPerPage: number = 20
   current: number = 1
   pages!: number
 
