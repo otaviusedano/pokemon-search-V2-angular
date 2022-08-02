@@ -1,7 +1,7 @@
 header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   .container-title {
     display: flex;
@@ -16,6 +16,11 @@ header {
 
     span {
       cursor: pointer;
+
+      &:hover {
+        color: var(--tertiary-text-color);
+        transition: 0.3s;
+      }
     }
   }
 
@@ -55,4 +60,21 @@ header {
       }
     }
   } 
+}
+
+@media only screen and (min-width: 660px) {
+  header {
+    flex-direction: row;
+    align-items: center;
+    margin: 26px auto;
+
+    .container-search {
+      justify-content: end;
+      gap: 32px;
+
+      input {
+        width: 325px;
+      }
+    }
+  }
 }
