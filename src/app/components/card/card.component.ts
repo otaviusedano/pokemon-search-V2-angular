@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core'
 import { Subscription } from 'rxjs'
 
 import { PokedexService } from 'src/app/services/pokedex.service'
@@ -12,12 +12,17 @@ import format from 'src/app/helpers/format'
   styleUrls: ['./card.component.scss']
 })
 
-export class CardComponent implements OnInit, OnDestroy {
+export class CardComponent implements OnInit, OnDestroy, OnChanges {
   format: any = format
   pokemon!: pokemonData
   pokemonData!: Subscription
 
   constructor(private service: PokedexService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log(changes['pokemonName']);
+    // console.log(this.pokemonName);
+  }
 
   @Input() pokemonName!: string
 
