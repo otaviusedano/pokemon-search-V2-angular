@@ -1,53 +1,50 @@
-import { 
-  evolutionData, 
-  evolutionsData, 
-  pokemonTypes, 
-  pokemonType, 
-  pokemonStats, 
-  pokemonStat 
-} from "../interfaces/pokemon"
+import { PokemonStat, PokemonStats, StatsFormed } from "../interfaces/stats"
+import { PokemonType, PokemonTypes } from "../interfaces/types"
+import { EvolutionData, EvolutionsData } from "../interfaces/evolutions"
 
 import typeColors, { iconsStatsColors } from "./pokemonTypes"
+import { IconName } from "@fortawesome/fontawesome-svg-core"
 
 class format {
-  statsFormed!: any
-  statsFromPokemon!: any
+  statsFormed!: StatsFormed
 
-  stats(stats: pokemonStats) {
+  icon(statName: string) {
+    let fasIcon: IconName = 'i'
+    switch (statName) {
+      case 'hp':
+        fasIcon = 'heart'
+      break
 
-    return stats?.stats?.map((stat: pokemonStat) => {
+      case 'attack':
+        fasIcon = 'gun'
+      break
 
-      const statName = stat.stat.name
-      const statBase = stat.base_stat
-      const statNameSplited = statName.split('-')
+      case 'defense':
+        fasIcon = 'shield-halved'
+      break
 
-      let fasIcon = ''
+      case 'special-attack':
+        fasIcon = 'magic-wand-sparkles'
+      break
 
-      switch (statName) {
-        case 'hp':
-          fasIcon = 'heart'
-        break
+      case 'special-defense':
+        fasIcon = 'virus'
+      break
 
-        case 'attack':
-          fasIcon = 'gun'
-        break
+      case 'speed':
+        fasIcon = 'bolt'
+      break
+    }
+    return fasIcon
+  }
 
-        case 'defense':
-          fasIcon = 'shield-halved'
-        break
+  stats(stats: PokemonStats) {
 
-        case 'special-attack':
-          fasIcon = 'magic-wand-sparkles'
-        break
+    return stats?.stats?.map((stat: PokemonStat) => {
 
-        case 'special-defense':
-          fasIcon = 'virus'
-        break
-
-        case 'speed':
-          fasIcon = 'bolt'
-        break
-      }
+      const statName: string = stat.stat.name
+      const statBase: number = stat.base_stat
+      const statNameSplited: string[] = statName.split('-')
 
       let statNameFormated
         if (statNameSplited.length > 1) {
@@ -58,7 +55,7 @@ class format {
         }
 
         this.statsFormed = {
-          fasIcon: fasIcon,
+          fasIcon: this.icon(statName),
           statName: statNameFormated,
           statBase: statBase
         }
@@ -74,13 +71,13 @@ class format {
     })
   }
 
-  types(pokemon: pokemonTypes) {
-    return pokemon?.types?.map((type: pokemonType) => {
+  types(pokemon: PokemonTypes) {
+    return pokemon?.types?.map((type: PokemonType) => {
       return type.type.name
     })
   }
 
-  iconColors(iconName: string) {    
+  iconColors(iconName: string) {
     const iconNameFormated = iconName.split('-').join('_')
     return iconsStatsColors[iconNameFormated]
   }
@@ -89,7 +86,7 @@ class format {
     return typeColors[type]
   }
 
-  evolutions(evolution: evolutionData): evolutionsData {
+  evolutions(evolution: EvolutionData): EvolutionsData {
     return {
       next: evolution?.evolves_to?.map((e: any) => this.evolutions(e)),
       pokemon: { name: evolution?.species.name }
