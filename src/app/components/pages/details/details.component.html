@@ -1,6 +1,12 @@
 <div class='container-details'>
   <main>
-    <section>
+    <ng-template #loading>
+      <app-not-found *ngIf="error$ | async; else loadingNoError "></app-not-found>
+      <ng-template #loadingNoError>
+        <h1>Carregando...</h1>
+      </ng-template>
+    </ng-template>
+    <section *ngIf="pokemon$ | async ; else loading">
       <div class="details-header">
         <fa-icon icon="arrow-left" routerLink='/'></fa-icon>
         <span>{{pokemon.name | titlecase}}</span>
@@ -34,7 +40,11 @@
       <div *ngIf="evolutions.length > 1" class="details-evolutions">
         <h1>Evoluções</h1>
         <div class="evolutions">
-          <app-card *ngFor="let evolution of evolutions" [pokemonName]="evolution.name" ></app-card>
+          <app-card
+            *ngFor="let evolution of evolutions"
+            [pokemonName]="evolution.name"
+          >
+          </app-card>
         </div>
       </div>
     </section>
