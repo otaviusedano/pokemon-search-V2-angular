@@ -1,12 +1,11 @@
-export interface results {
-  count: number
-  results: [resultsData]
-  next: string
-  previous: string
-  pokemons: string[]
+export interface PokemonsFromResults {
+  name: string;
+  url: string;
 }
 
-export interface resultsData {
-  name: string
-  url: string
+export interface ResultsFromApi {
+  count: number;
+  next: string;
+  previous: string;
+  results: PokemonsFromResults[];
 }
