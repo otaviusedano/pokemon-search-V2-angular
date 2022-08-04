@@ -4,9 +4,9 @@
     <section class="container-pokemons">
       <h1 *ngIf="getError()">Pokemon Não Encontrado.</h1>
       <app-card
-        class="card-view"
+        class="card-pokedex"
         *ngFor="let pokemon of filterPokemons()"
-        [pokemonName]="pokemon"
+        [pokemonName]="pokemon.name"
       >
       </app-card>
     </section>
