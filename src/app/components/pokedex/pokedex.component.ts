@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs/internal/Subscription'
 import { Observable } from 'rxjs'
 
 import { PokedexService } from '../../services/pokedex.service'
-import { results } from 'src/app/interfaces/results'
 import format from 'src/app/helpers/format'
 
 @Component({
@@ -17,7 +16,6 @@ export class PokedexComponent implements OnInit, OnDestroy  {
   resultsSubscribed!: Subscription
   pokemonsFiltered: string[] = []
   inputValue!: string
-  pokemons!: any[]
   count!: number
   results$!: Observable<any>
   pokemons$!: Observable<any>
@@ -43,34 +41,30 @@ export class PokedexComponent implements OnInit, OnDestroy  {
     this.inputValue = $event
   }
 
-  filterPokemons(): string[] {
+  filterPokemons(): any {
     if (this.service.pokemonFiltered?.length > 0 || this.service.pokemonFiltered?.length >= 1) {
       return this.service.pokemonFiltered
     }
 
-    return this.service.results?.pokemons.filter((pokemon: string) => {
-
+    return this.service.results?.results.filter(({name}) => {
       if (this.inputValue) {
-        return pokemon.includes(this.inputValue)
+        return name.includes(this.inputValue)
       } else {
-        return true
+        return name
       }
     })
   }
 
   setPageTo(page: string): void {
-    this.resultsSubscribed = this.service.setPage(page).pipe(
-    ).subscribe(
-      (res: results) =>
-      this.service.results = {
-        count: res.count,
-        next: res.next,
-        previous: res.previous,
-        pokemons: res.results.map(({name}) =>
-          name
-        )
-      }
-    )
+    this.resultsSubscribed = this.service.setPage(page)
+      .subscribe(
+        (res: any) =>
+        this.service.results = {
+          count: res.count,
+          next: res.next,
+          previous: res.previous,
+          results: res.results
+        }
+      )
   }
-
 }
