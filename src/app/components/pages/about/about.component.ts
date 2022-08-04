@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { UserFromApi } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-about',
@@ -10,9 +12,9 @@ import { Observable, tap } from 'rxjs';
 
 export class AboutComponent implements OnInit {
   private readonly apiUrlGitHub: string = 'https://api.github.com/users/otaviusedano'
-  getApi!: Observable<any>
-  dataFromGit!: object
-  dataFromGit$!: Observable<any>
+  private getApi!: Observable<any>
+  dataFromGit!: UserFromApi
+  dataFromGit$!: Observable<UserFromApi>
 
   constructor(private http: HttpClient) { }
 
