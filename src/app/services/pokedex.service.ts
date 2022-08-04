@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
-import { results } from '../interfaces/results'
+import { ResultsFromApi } from '../interfaces/results'
+import { PokemonToSearch } from '../interfaces/pokemon'
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class PokedexService {
   private readonly firstFetchUrlApi = this.urlApi + '?offset=0&limit=20'
   private readonly lastFetchUrlApi = this.urlApi + '?offset=1128&limit=20'
   error: Error | undefined
-  results!: any
-  pokemonFiltered!: string[]
+  results!: ResultsFromApi
+  pokemonFiltered!: PokemonToSearch[]
 
   constructor(private http: HttpClient) { }
 
   setPage(page: string): Observable<any> {
 
-    let urlToGet = ''
+    let urlToGet: string = ''
 
     switch (page) {
       case 'next':
