@@ -31,8 +31,9 @@ export class CardComponent implements OnInit, OnDestroy {
 
   getPokemon(): void {
     this.subscribed = this.service.getPokemonByName(this.pokemonName)
-    .subscribe((data: PokemonData) => {
-      this.pokemon = data
-    }, error => this.service.error = error.status)
+    .subscribe({
+      next: (pokemonData: PokemonData) => this.pokemon = pokemonData,
+      error: (err: Error) => this.service.error = err
+    })
   }
 }
