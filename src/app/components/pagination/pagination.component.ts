@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { PokedexService } from 'src/app/services/pokedex.service'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'app-pagination',
@@ -12,26 +11,28 @@ export class PaginationComponent implements OnInit {
   current: number = 1
   pages!: number
 
-  constructor(private service: PokedexService) { }
+  constructor() { }
 
-  @Input() setPageTo: any
+  @Output() emitPage = new EventEmitter<any>()
+  @Input() pokemonsCount!: number
 
   ngOnInit(): void {
-    this.pages = Math.ceil(this.service.results?.count / this.pokemonsPerPage)
+    this.pages = Math.ceil(this.pokemonsCount / this.pokemonsPerPage)
   }
 
   nextPage() {
+    console.log();
     this.current++
-    this.setPageTo('next')
+    this.emitPage.emit('next');
   }
 
   prevPage() {
     if (this.current === this.pages) {
       this.current--
-      this.setPageTo('lastPage')
+      this.emitPage.emit('lastPage');
     } else {
       this.current--
-      this.setPageTo('prev')
+      this.emitPage.emit('prev');
     }
   }
 
