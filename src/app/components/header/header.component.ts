@@ -16,6 +16,11 @@ export class HeaderComponent {
 
   @Output() inputValue = new EventEmitter<string>()
 
+  reset() {
+    this.service.resetError()
+    this.service.resetPokemonFiltered()
+  }
+
   handlerChange(value: string) {
     this.pokemonName = value.toLowerCase().trim()
     this.pokemonToSearch = {
@@ -23,11 +28,6 @@ export class HeaderComponent {
     }
     this.inputValue.emit(this.pokemonName)
     this.reset()
-  }
-
-  reset() {
-    this.service.error = undefined
-    this.service.pokemonFiltered = []
   }
 
   handlerSearch() {
