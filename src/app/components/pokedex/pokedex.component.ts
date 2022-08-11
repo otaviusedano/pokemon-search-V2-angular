@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
-import { Subscription } from 'rxjs/internal/Subscription'
-import { Observable } from 'rxjs'
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core'
+
+import { Observable, of, Subscription } from 'rxjs'
 
 import { PokedexService } from '../../services/pokedex.service'
 import format from 'src/app/helpers/format'
+
+import { PokemonsFromResults, ResultsFromApi } from 'src/app/interfaces/results'
 
 @Component({
   selector: 'app-pokedex',
@@ -11,44 +13,56 @@ import format from 'src/app/helpers/format'
   styleUrls: ['./pokedex.component.scss']
 })
 
-export class PokedexComponent implements OnInit, OnDestroy  {
+export class PokedexComponent implements OnInit, OnDestroy {
   format: any = format
   resultsSubscribed!: Subscription
-  pokemonsFiltered: string[] = []
-  inputValue!: string
+  pokemonFromInput!: string
   count!: number
-  results$!: Observable<any>
-  pokemons$!: Observable<any>
-  count$!: Observable<any>
-  nextPage$!: Observable<any>
-  prevPage$!: Observable<any>
+  pokemons$!: Observable<PokemonsFromResults[]>
+  pokemonsCount$!: Observable<number>
+  isHeaderLock: boolean = false
 
   constructor(private service: PokedexService) { }
+
+  @HostListener('window:scroll', ['$event'])
+
+  checkScroll(): void {
+    if (window.scrollY > 200) {
+      this.isHeaderLock = true;
+    } else {
+      this.isHeaderLock = false
+    }
+  }
 
   ngOnInit(): void {
     this.setPageTo('init')
   }
 
   ngOnDestroy(): void {
-    this.service.pokemonFiltered = []
+    this.resultsSubscribed.unsubscribe()
+    this.service.resetPokemonFiltered()
   }
 
   getError(): Error | undefined {
     return this.service.error
   }
 
-  getInputValue($event: any): void {
-    this.inputValue = $event
+  getPokemonFromInput(pokemon: string): void {
+    this.pokemonFromInput = pokemon
   }
 
-  filterPokemons(): any {
-    if (this.service.pokemonFiltered?.length > 0 || this.service.pokemonFiltered?.length >= 1) {
+  filterPokemons(pokemons: PokemonsFromResults[] ) {
+    const justOnePokemonPerSearch = this.service.pokemonFiltered?.length > 0 || this.service.pokemonFiltered?.length >= 1
+    if (justOnePokemonPerSearch) {
       return this.service.pokemonFiltered
     }
 
-    return this.service.results?.results.filter(({name}) => {
-      if (this.inputValue) {
-        return name.includes(this.inputValue)
+    return pokemons.filter(({name}) => {
+      const pokemonName = name.toLocaleLowerCase()
+      const isPokemonInclude = pokemonName.includes(this.pokemonFromInput)
+
+      if (this.pokemonFromInput) {
+        return isPokemonInclude
       } else {
         return name
       }
@@ -57,14 +71,13 @@ export class PokedexComponent implements OnInit, OnDestroy  {
 
   setPageTo(page: string): void {
     this.resultsSubscribed = this.service.setPage(page)
-      .subscribe(
-        (res: any) =>
-        this.service.results = {
-          count: res.count,
-          next: res.next,
-          previous: res.previous,
-          results: res.results
-        }
-      )
+    .subscribe(
+      (res: ResultsFromApi) => {
+        this.pokemonsCount$ = of(res.count)
+        this.service.nextPage = res.next
+        this.service.previousPage = res.previous
+        this.pokemons$ = of(res.results)
+      }
+    )
   }
 }
