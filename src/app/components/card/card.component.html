@@ -16,7 +16,6 @@
       <div
         class="type"
         [ngStyle]='{backgroundColor: format.colors(type)}'
-        #pokemonTypes
         *ngFor="let type of format.types(pokemon)"
       >
         {{type | titlecase}}
