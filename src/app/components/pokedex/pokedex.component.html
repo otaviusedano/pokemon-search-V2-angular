@@ -1,14 +1,24 @@
 <div class="container-pokedex">
-  <app-header (inputValue)="getInputValue($event)"></app-header>
+  <ng-template #loading>
+    <h1>Carregando...</h1>
+  </ng-template>
+
+  <app-header [ngClass]="isHeaderLock ? 'lock' : '' " (inputValue)="getPokemonFromInput($event)" ></app-header>
   <main>
-    <section class="container-pokemons">
+    <section class="container-pokemons" *ngIf="pokemons$ | async as pokemons; else loading">
       <h1 *ngIf="getError()">Pokemon Não Encontrado.</h1>
       <app-card
         class="card-pokedex"
-        *ngFor="let pokemon of filterPokemons()"
+        *ngFor="let pokemon of filterPokemons(pokemons)"
         [pokemonName]="pokemon.name"
       >
       </app-card>
     </section>
   </main>
-<app-pagination [setPageTo]="setPageTo"></app-pagination>
+  <app-pagination
+    *ngIf="pokemonsCount$ | async as pokemonsCount; else loading"
+    [pokemonsCount]="pokemonsCount"
+    (emitPage)="setPageTo($event)"
+  >
+  </app-pagination>
+</div>
