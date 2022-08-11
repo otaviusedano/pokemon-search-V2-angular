@@ -5,14 +5,14 @@
   </div>
   <div class="container-search">
     <input
-    (keyup)="handlerChange(inputValue.value)"
-    (keyup.enter)="handlerSearch()"
-      #inputValue
+      (input)="handlerChange(input.value)"
+      (keyup.enter)="handlerSearch()"
+      #input
       placeholder="Pesquise seu pokémon"
       type="text"
     />
     <button
-      [disabled]="!inputValue.value.length"
+      [disabled]="!input.value.length"
       (click)="handlerSearch()"
       type="button"
     >
