@@ -1,5 +1,5 @@
 .container-details {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--secondary-background-color);
   padding: 24px;
 
@@ -95,6 +95,12 @@
       }
     }
 
+    &-more-pokemons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     &-evolutions {
 
       h1 {
@@ -127,6 +133,11 @@
 
     main {
       height: 100%;
+
+      .details-more-pokemons {
+        display: flex;
+        flex-direction: row;
+      }
     }
   }
 }
