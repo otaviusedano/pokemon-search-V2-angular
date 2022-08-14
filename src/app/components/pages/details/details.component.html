@@ -37,14 +37,26 @@
           <span>{{stat.statBase}}</span>
         </div>
       </div>
-      <div *ngIf="evolutions.length > 1" class="details-evolutions">
-        <h1>Evoluções</h1>
-        <div class="evolutions">
-          <app-card
-            *ngFor="let evolution of evolutions"
-            [pokemonName]="evolution.name"
-          >
-          </app-card>
+      <div class="details-more-pokemons">
+        <div *ngIf="evolutions.length > 1" class="details-evolutions">
+          <h1>Evoluções</h1>
+          <div class="evolutions">
+            <app-card
+              *ngFor="let evolution of evolutions"
+              [pokemonName]="evolution.name"
+            >
+            </app-card>
+          </div>
+        </div>
+        <div *ngIf="varieties.length > 0" class="details-evolutions">
+          <h1>Variações</h1>
+          <div class="evolutions">
+            <app-card
+              *ngFor="let variety of varieties"
+              [pokemonName]="variety.name"
+            >
+            </app-card>
+          </div>
         </div>
       </div>
     </section>
