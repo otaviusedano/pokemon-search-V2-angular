@@ -9,6 +9,11 @@ export interface Evolutions {
   name: string
 }
 
+export interface Varieties {
+  name: string,
+  url: string
+}
+
 export interface FirstEvolutionData {
   name: string
   url: string
