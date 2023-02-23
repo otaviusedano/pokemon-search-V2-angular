@@ -1,17 +1,12 @@
-:host.lock {
-  header {
-    position: fixed;
-    width: 88%;
-    transition: 0.2s ease-out;
-    top: 0px;
-    padding-top: 12px;
-  }
-}
-
 header {
+  position: fixed;
+  width: 100vw;
   transition: 0.2s ease-out;
   background-color: var(--primary-background-color);
   z-index: 2;
+  top: 0;
+  right: 0;
+  padding: 16px 74px;
 
   .container-title {
     display: flex;
@@ -76,7 +71,7 @@ header {
   header {
     flex-direction: row;
     align-items: center;
-    margin: 26px auto;
+    padding: 20px 100px;
 
     .container-search {
       justify-content: end;

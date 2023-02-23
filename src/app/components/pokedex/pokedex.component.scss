@@ -1,6 +1,7 @@
 .container-pokedex {
   background-color: var(--primary-background-color);
   margin: 24px;
+  padding-top: 180px;
 
   main {
     min-height: 75vh;
@@ -17,6 +18,6 @@
 @media only screen and (min-width: 660px) {
   .container-pokedex {
     display: block;
-    margin: auto 100px;
+    padding-top: 150px;
   }
 }
